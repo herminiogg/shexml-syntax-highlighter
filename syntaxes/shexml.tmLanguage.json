@@ -1,0 +1,599 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ShExML",
+	"patterns": [
+		{
+			"include": "#declarations"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#shapes"
+		},
+		{
+			"include": "#graph"
+		}
+	],
+	"repository": {
+		"declarations": {
+			"patterns": [
+				{
+					"include": "#prefix"
+				},
+				{
+					"include": "#source"
+				},
+				{
+					"include": "#query"
+				},
+				{
+					"include": "#functions"
+				},
+				{
+					"include": "#iterator"
+				},
+				{
+					"include": "#expression"
+				},
+				{
+					"include": "#matcher"
+				},
+				{
+					"include": "#import"
+				},
+				{
+					"include": "#autoincrement"
+				}
+			]
+		},
+		"shapes": {
+			"patterns": [
+				{
+					"include": "#var-prefix"
+				},
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#triple-generation-expression"
+				},
+				{
+					"include": "#predicate-object-tuples"
+				}
+			]
+		},
+		"graph": {
+			"patterns": [
+				{
+					"include": "#var-prefix"
+				},
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#double-square-brackets"
+				},
+				{
+					"include": "#double-square-closing-brackets"
+				},
+				{
+					"include": "#shapes"
+				}
+			]
+		},
+		"prefix": {
+			"begin": "\\s*([pP][Rr][Ee][Ff][Ii][Xx])\\s*",
+			"beginCaptures": {
+				"0": { "name": "keyword.prefix.shexml"}
+			},
+			"end": "\n",
+			"patterns": [
+				{
+					"include": "#var-prefix"
+				},
+				{
+					"include": "#less-than-prefix"
+				}
+			]
+		},
+		"source": {
+			"begin": "([sS][Oo][Uu][Rr][Cc][Ee])",
+			"beginCaptures": {
+				"0": { "name": "keyword.source.shexml"}
+			},
+			"end": "\n",
+			"patterns": [
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#less-than-with-normal-var"
+				}
+			]
+		},
+		"query": {
+			"begin": "([Qq][Uu][Ee][Rr][Yy])",
+			"beginCaptures": {
+				"0": { "name": "keyword.query.shexml"}
+			},
+			"end": ">",
+			"patterns": [
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#less-than"
+				},
+				{
+					"include": "#url"
+				}
+			]
+		},
+		"functions": {
+			"begin": "([Ff][Uu][Nn][Cc][Tt][Ii][Oo][Nn][Ss])",
+			"beginCaptures": {
+				"0": { "name": "keyword.functions.shexml"}
+			},
+			"end": "\n",
+			"patterns": [
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#less-than-function"
+				}
+			]
+		},
+		"matcher": {
+			"begin": "([Mm][Aa][Tt][Cc][Hh][Ee][Rr])",
+			"beginCaptures": {
+				"0": { "name": "keyword.matcher.shexml"}
+			},
+			"end": "\n",
+			"patterns": [
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#less-than-matcher"
+				}
+			]
+		},
+		"import": {
+			"begin": "([Ii][Mm][Pp][Oo][Rr][Tt])",
+			"beginCaptures": {
+				"0": { "name": "keyword.import.shexml"}
+			},
+			"end": "\n",
+			"patterns": [
+				{
+					"include": "#less-than"
+				},
+				{
+					"include": "#url"
+				}
+			]
+		},
+		"autoincrement": {
+			"begin": "([Aa][Uu][TT][Oo][Ii][Nn][Cc][Rr][Ee][Mm][Ee][Nn][Tt])",
+			"beginCaptures": {
+				"0": { "name": "keyword.autoincrement.shexml"}
+			},
+			"end": "\n",
+			"patterns": [
+				{
+					"include": "#less-than-autoincrement"
+				},
+				{
+					"include": "#var"
+				}
+			]
+		},
+		"iterator": {
+			"begin": "([Ii][Tt][Ee][Rr][Aa][Tt][Oo][Rr])",
+			"beginCaptures": {
+				"0": { "name": "keyword.iterator.shexml"}
+			},
+			"end": "}",
+			"patterns": [
+				{
+					"include": "#iterator-contents"
+				},
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#less-than-query-part"
+				}
+			]
+		},
+		"expression": {
+			"begin": "([Ee][Xx][Pp][Rr][Ee][Ss][Ss][Ii][Oo][Nn])",
+			"beginCaptures": {
+				"0": { "name": "keyword.expression.shexml"}
+			},
+			"end": "\n",
+			"patterns": [
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#expression-contents"
+				}
+			]
+		},
+		"triple-generation-expression": {
+			"begin": "([a-zA-Z0-9_\\-]|(\\\\.))*:?\\[",
+			"beginCaptures": {
+				"0": { "name": "variable.other.shexml"}
+			},
+			"end": "]",
+			"patterns": [
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#dot"
+				},
+				{
+					"include": "#matching"
+				},
+				{
+					"include": "#if"
+				},
+				{
+					"include": "#rdf-collection"
+				}
+			]
+		},
+		"shape-link": {
+			"match": "@([a-zA-Z0-9_\\-]|(\\\\.))*:([a-zA-Z0-9_\\-]|(\\\\.))+",
+			"name": "variable.language"
+
+		},
+		"predicate-object-tuples": {
+			"begin": "{",
+			"beginCaptures": {
+				"0": { "name": "markup.other.block.shexml"}
+			},
+			"end": "}",
+			"patterns": [
+				{
+					"include": "#var-prefix"
+				},
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#triple-generation-expression"
+				},
+				{
+					"include": "#shape-link"
+				},
+				{
+					"include": "#langtag-generation"
+				},
+				{
+					"include": "#langtag-literal"
+				},
+				{
+					"include": "#datatype-generation"
+				},
+				{
+					"include": "#a-rdf-type"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#semicolon"
+				}
+			]
+		},
+		"datatype-generation": {
+			"match": "\\s+xs(d)?:[a-zA-Z]+\\s+",
+			"name": "variable.language.datatype.shexml"
+		},
+		"langtag-literal": {
+			"match": "\\s+@[a-zA-Z\\-]+\\s+",
+			"name": "variable.language.langtag.shexml"
+		},
+		"langtag-generation": {
+			"begin": "\\s+@\\[",
+			"beginCaptures": {
+				"0": { "name": "keyword.other.langtag.generation.shexml"}
+			},
+			"end": "\\]",
+			"patterns": [
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#dot"
+				}
+			]
+		},
+		"expression-contents": {
+			"begin": "<",
+			"beginCaptures": {
+				"0": { "name": "symbol.shexml"}
+			},
+			"end": ">",
+			"patterns": [
+				{
+					"include": "#expression-keywords"
+				},
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#dot"
+				},
+				{
+					"include": "#plus"
+				},
+				{
+					"include": "#strings"
+				}
+			]
+		},
+		"iterator-contents": {
+			"begin": "(\\s*{)",
+			"beginCaptures": {
+				"0": { "name": "markup.other.block.shexml"}
+			},
+			"end": "\\s*(?=})",
+			"patterns": [
+				{
+					"include": "#field"
+				},
+				{
+					"include": "#iterator"
+				}
+			]
+		},
+		"field": {
+			"begin": "(((([Pp][Uu][Ss][Hh][Ee][Dd])|([Pp][Oo][Pp][Pp][Ee][Dd]))_)?[Ff][Ii][Ee][Ll][Dd])",
+			"beginCaptures": {
+				"0": { "name": "keyword.field.shexml"}
+			},
+			"while": "^>",
+			"patterns": [
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#less-than-query-part"
+				}
+			]
+		},
+		"query-part": {
+			"match": "([Jj][Ss][Oo][Nn][Pp][Aa][Tt][Hh][:]|[Xx][Mm][Ll][Pp][Aa][Tt][Hh][:]|[Xx][Pp][Aa][Tt][Hh][:]|[Cc][Ss][Vv][Pp][Ee][Rr][Rr][Oo][Ww][:]|[Ss][Qq][Ll][:]|[Ss][Cc][Aa][Ll][Aa][:]|[Ss][Pp][Aa][Rr][Qq][Ll][:])",
+			"name": "variable.language.shexml"
+		},
+		"query-part-no-language": {
+			"match": "(([a-zA-Z0-9_\\-]|(\\\\.)|[\\[\\]*\/@.,%\\-\\(\\)?=&#$^';)])+)",
+			"name": "query.part.language.shexml"
+		},
+		"functions-language": {
+			"match": "([Ss][Cc][Aa][Ll][Aa][:])",
+			"name": "variable.language.shexml"
+		},
+		"var-prefix": {
+			"name": "storage.type.prefix-var.shexml",
+			"match": "([a-zA-Z0-9_\\-]|(\\\\.))*:"
+		},
+		"var": {
+			"name": "variable.other.shexml",
+			"match": "([a-zA-Z0-9_\\-]|(\\\\.))+"
+		},
+		"less-than": {
+			"name": "symbol.shexml",
+			"match": "<"
+		},
+		"less-than-prefix": {
+			"begin": "<",
+			"beginCaptures": {
+				"0": { "name": "symbol.shexml"}
+			},
+			"end": ">",
+			"patterns": [
+				{
+					"include": "#url"
+				}
+			]
+		},
+		"less-than-function": {
+			"begin": "<",
+			"beginCaptures": {
+				"0": { "name": "symbol.shexml"}
+			},
+			"end": ">",
+			"patterns": [
+				{
+					"include": "#functions-language"
+				},
+				{
+					"include": "#url"
+				}
+			]
+		},
+		"less-than-matcher": {
+			"begin": "<",
+			"beginCaptures": {
+				"0": { "name": "symbol.shexml"}
+			},
+			"end": "(?=>)",
+			"patterns": [
+				{
+					"include": "#var"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "comma"
+				},
+				{
+					"include": "#as"
+				},
+				{
+					"include": "#and"
+				}
+			]
+		},
+		"less-than-autoincrement": {
+			"begin": "<",
+			"beginCaptures": {
+				"0": { "name": "symbol.shexml"}
+			},
+			"end": ">",
+			"patterns": [
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#to"
+				},
+				{
+					"include": "#by"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#plus"
+				}
+			]
+		},
+		"less-than-with-normal-var": {
+			"begin": "<",
+			"beginCaptures": {
+				"0": { "name": "symbol.shexml"}
+			},
+			"end": ">",
+			"patterns": [
+				{
+					"include": "#url"
+				}
+			]
+		},
+		"less-than-query-part": {
+			"begin": "<",
+			"beginCaptures": {
+				"0": { "name": "symbol.shexml"}
+			},
+			"end": ">",
+			"patterns": [
+				{
+					"include": "#query-part"
+				},
+				{
+					"include": "#query-part-no-language"
+				}
+			]
+		},
+		"url": {
+			"match": "(((http|https|file):\/\/)|(jdbc:[a-zA-Z0-9]+:))?([a-zA-Z0-9_\\.-/:]|(\\\\.))+",
+			"name": "markup.underline.link.shexml"
+		},
+		"dot": {
+			"match": "\\.",
+			"name": "keyword.dot.shexml"
+		},
+		"semicolon": {
+			"match": ";",
+			"name": "keyword.semicolon.shexml"
+		},
+		"plus": {
+			"match": "\\+",
+			"name": "keyword.plus.shexml"
+		},
+		"comma": {
+			"match": ",",
+			"name": "keyword.dot.shexml"
+		},
+		"as": {
+			"match": "\\s+[Aa][Ss]\\s+",
+			"name": "keyword.as.shexml"
+		},
+		"and": {
+			"match": "\\s+(([Aa][Nn][Dd])|[&])\\s+",
+			"name": "keyword.and.shexml"
+		},
+		"a-rdf-type": {
+			"match": "\\s+a\\s+",
+			"name": "keyword.a.shexml"
+		},
+		"matching": {
+			"match": "\\s+[Mm][Aa][Tt][Cc][Hh][Ii][Nn][Gg]\\s+",
+			"name": "keyword.matching.shexml"
+		},
+		"if": {
+			"match": "\\s+[Ii][Ff]\\s+",
+			"name": "keyword.if.shexml"
+		},
+		"double-square-brackets": {
+			"match": "\\s+\\[\\[(\\s|\n)+",
+			"name": "keyword.graph.shexml"
+		},
+		"double-square-closing-brackets": {
+			"match": "(\\s|\n)*\\]\\](\\s|\n)*",
+			"name": "keyword.graph.shexml"
+		},
+		"expression-keywords": {
+			"match": "[Uu][Nn][Ii][Oo][Nn]|[Jj][Oo][Ii][Nn]|[Ss][Uu][Bb][Ss][Tt][Ii][Tt][Uu][Ii][Nn][Gg]|[Oo][Nn]",
+			"name": "keyword.expressions.shexml"
+		},
+		"numbers": {
+			"match": "[0-9]+",
+			"name": "constant.numeric.shexml"
+		},
+		"by": {
+			"match": "[Bb][Yy]",
+			"name": "keyword.by.shexml"
+		},
+		"to": {
+			"match": "[Tt][Oo]",
+			"name": "keyword.to.shexml"
+		},
+		"rdf-collection": {
+			"begin": "(\\s+[Aa][Ss]\\s+)((RDFAlt|RDFBag|RDFList|RDFSeq))",
+			"beginCaptures": {
+				"0": { "name": "keyword.as.shexml"},
+				"1": { "name": "constant.other.shexml"}
+			},
+			"end": "(?=.)"
+		},
+		"strings": {
+			"name": "string.quoted.double.shexml",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.shexml",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.line.number-sign",
+			"begin": "#",
+			"end": "\n",
+			"patterns": [
+				{
+					"name": "constant.character.escape.shexml",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.shexml"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "shexml-syntax-highlighter",
+  "displayName": "ShExML syntax highlighter",
+  "description": "Syntax highlighting for the ShExML language",
+  "repository": "https://github.com/herminiogg/shexml-syntax-highlighter",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "shexml",
+      "aliases": ["ShExML", "shexml"],
+      "extensions": [".shexml"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "shexml",
+      "scopeName": "source.shexml",
+      "path": "./syntaxes/shexml.tmLanguage.json"
+    }]
+  }
+}

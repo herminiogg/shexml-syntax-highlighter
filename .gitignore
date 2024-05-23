@@ -1,0 +1,4 @@
+node_modules
+*.vsix
+README-old.md
+vsc-extension-quickstart.md
