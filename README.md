@@ -1,5 +1,7 @@
 # shexml-syntax-highlighter
 
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/herminiogg.shexml-syntax-highlighter)](https://marketplace.visualstudio.com/items?itemName=herminiogg.shexml-syntax-highlighter)
+
 This is an extension providing syntax highlighting for the [Shape Expressions Mapping Language (ShExML)](https://github.com/herminiogg/ShExML) using a TextMate grammar in Visual Studio Code.
 
 ## Features

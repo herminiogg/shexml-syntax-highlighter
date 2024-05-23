@@ -3,6 +3,7 @@
   "displayName": "ShExML syntax highlighter",
   "description": "Syntax highlighting for the ShExML language",
   "repository": "https://github.com/herminiogg/shexml-syntax-highlighter",
+  "publisher": "herminiogg",
   "version": "0.1.0",
   "engines": {
     "vscode": "^1.89.0"
