@@ -30,7 +30,7 @@ Finally, install it in your Visual Studio Code instance:
 $ code --install-extension shexml-syntax-highlighter-0.1.0.vsix
 ```
 
-> Alternatively, you will be able to install it from the marketplace very soon...
+> Alternatively, you can install it from the marketplace or using the package file under releases.
 
 ## Release Notes
 
