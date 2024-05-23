@@ -7,6 +7,7 @@ This is an extension providing syntax highlighting for the [Shape Expressions Ma
 The extension can highlight the different tokens used in ShExML depending on their context and importance. Take into account that this is not full grammar nor a language server so it will not provide autocorrection or autocompletion for the code.
 
 You can see it in action here:
+
 ![example](images/example.gif)
 
 ## Installation
